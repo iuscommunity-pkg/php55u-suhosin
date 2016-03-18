@@ -46,12 +46,12 @@ make %{?_smp_mflags}
 
 %install
 make install INSTALL_ROOT=%{buildroot}
-install -Dm644 suhosin.ini %{buildroot}%{_sysconfdir}/php.d/%{ini_name}
+install -Dm644 suhosin.ini %{buildroot}%{php_inidir}/%{ini_name}
 
 
 %files
 %doc Changelog CREDITS
-%config(noreplace) %{_sysconfdir}/php.d/%{ini_name}
+%config(noreplace) %{php_inidir}/%{ini_name}
 %{php_extdir}/suhosin.so
 
 
@@ -61,6 +61,7 @@ install -Dm644 suhosin.ini %{buildroot}%{_sysconfdir}/php.d/%{ini_name}
 - Conflict with stock name
 - Filter provides
 - Use 40- prefix for ini file
+- Use %%php_inidir macro
 
 * Thu May 21 2015 Ben Harper <ben.harper@rackspace.com> -  0.9.38-1.ius
 - Latest upstream
