@@ -1,5 +1,6 @@
 %define php_base php55u
 %define real_name php-suhosin
+%global ini_name 40-suhosin.ini
 
 
 Name:           %{php_base}-suhosin
@@ -45,12 +46,12 @@ make %{?_smp_mflags}
 
 %install
 make install INSTALL_ROOT=%{buildroot}
-install -Dm644 suhosin.ini %{buildroot}%{_sysconfdir}/php.d/suhosin.ini
+install -Dm644 suhosin.ini %{buildroot}%{_sysconfdir}/php.d/%{ini_name}
 
 
 %files
 %doc Changelog CREDITS
-%config(noreplace) %{_sysconfdir}/php.d/suhosin.ini
+%config(noreplace) %{_sysconfdir}/php.d/%{ini_name}
 %{php_extdir}/suhosin.so
 
 
@@ -59,6 +60,7 @@ install -Dm644 suhosin.ini %{buildroot}%{_sysconfdir}/php.d/suhosin.ini
 - Clean up provides
 - Conflict with stock name
 - Filter provides
+- Use 40- prefix for ini file
 
 * Thu May 21 2015 Ben Harper <ben.harper@rackspace.com> -  0.9.38-1.ius
 - Latest upstream
